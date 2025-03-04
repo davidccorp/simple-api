@@ -10,9 +10,6 @@ jobs:
     name: build-image
     runs-on: ubuntu-latest
 
-    env:
-      IMAGE_TAG: ${{ github.sha }}
-
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -21,7 +18,6 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
           image: vosszen/simple-api2
-          tags: ${{ env.IMAGE_TAG }}
           registry: docker.io
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
